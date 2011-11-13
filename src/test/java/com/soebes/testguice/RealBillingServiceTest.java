@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.soebes.testguice.BillingModule;
+import com.soebes.testguice.TestBillingModule;
 import com.soebes.testguice.CreditCardAccount;
 import com.soebes.testguice.IAccount;
 import com.soebes.testguice.IOrder;
@@ -21,7 +21,7 @@ public class RealBillingServiceTest {
          * instance. Most applications will call this method exactly once, in their
          * main() method.
          */
-        Injector injector = Guice.createInjector(new BillingModule());
+        Injector injector = Guice.createInjector(new TestBillingModule());
 
         /*
          * Now that we've got the injector, we can build objects.
