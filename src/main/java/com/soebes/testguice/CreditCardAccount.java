@@ -49,26 +49,27 @@ public class CreditCardAccount implements IAccount {
 
     @Override
     public ChargeResult charge(IOrder order) {
-        ChargeResult result = new ChargeResult();
-        result.setSuccessful(false);
+        ChargeResult result = ChargeResult.DECLINE_NO_CREDIT;
 
         if (getBalance() <= 0) {
             if (havingCredit()) {
                 // Yes we are allowed to charge as a credit..
                 chargeCredit(order, result);
             } else {
-                result.setDeclineMessage("You have no credit.");
+                //Decline already set.
+//                result.setDeclineMessage("You have no credit.");
             }
         } else {
             if (getBalance() >= order.getAmount()) {
                 setBalance(getBalance() - order.getAmount());
-                result.setSuccessful(true);
+                result = ChargeResult.SUCCESSFUL_TRANSACTION;
             } else {
                 if (havingCredit()) {
                     // Yes we are allowed to charge as a credit..
                     chargeCredit(order, result);
+                    result = ChargeResult.SUCCESSFUL_TRANSACTION;
                 } else {
-                    result.setDeclineMessage("You have no credit.");
+                    //Nothing to be done, cause it's already defined to NO_CREDIT
                 }
             }
         }

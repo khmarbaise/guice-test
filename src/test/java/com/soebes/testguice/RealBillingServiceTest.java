@@ -35,6 +35,8 @@ public class RealBillingServiceTest {
         // current balance 250 units
         IAccount account = new CreditCardAccount("The Name", 1000, 250);
 
+        
+        @SuppressWarnings("unused")
         Receipt receipt = billingService.chargeOrder(order, account);
     }
 }

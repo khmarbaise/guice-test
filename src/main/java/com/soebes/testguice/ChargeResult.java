@@ -1,8 +1,21 @@
 package com.soebes.testguice;
 
 public class ChargeResult {
+    public final static ChargeResult DECLINE_NO_CREDIT = new ChargeResult("You have no Credit.", false);
+    public final static ChargeResult SUCCESSFUL_TRANSACTION = new ChargeResult("Everything fine.", true);
+
     private boolean successful;
     private String declineMessage;
+
+    public ChargeResult() {
+        this.declineMessage = null;
+        this.successful = false;
+    }
+
+    public ChargeResult(String declineMessage, boolean successful ) {
+        this.declineMessage = declineMessage;
+        this.successful = successful;
+    }
 
     public boolean wasSuccessful() {
         return successful;
